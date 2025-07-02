@@ -21,4 +21,13 @@ public class PlayerHealth : MonoBehaviour
     {
         return salud;
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TomarDaño(10);
+        }
+    }
+
+
 }
