@@ -1,16 +1,34 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Npc : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public UnityEvent onInteractuar;
 
-    // Update is called once per frame
+    private bool jugadorCerca = false;
+
     void Update()
     {
-        
+        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        {
+            onInteractuar.Invoke();
+            Debug.Log("Interacci�n con NPC");
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            jugadorCerca = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            jugadorCerca = false;
+        }
     }
 }
